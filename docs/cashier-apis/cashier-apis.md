@@ -9,4 +9,4 @@ To start the cashier system, a __payment session__ is initiated—a secure, temp
 
 #### AUTHORIZATION: `Bearer Token`
 
-This folder is using Bearer Token from collection [Authentication Guide](./authentication.md)
+This folder is using Bearer Token from collection [Authentication Guide](../authentication.md)
