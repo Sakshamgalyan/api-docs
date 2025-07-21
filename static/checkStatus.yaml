@@ -1,0 +1,53 @@
+openapi: 3.0.3
+info:
+  title: Check Status API
+  version: 1.0.0
+servers:
+  - url: https://staging.paysecure.net/api/v1
+paths:
+  /purchases/{sessionId}/:
+    get:
+      summary: Check Status
+      description: Retrieves the details of a purchase identified by the provided session ID. Note that this API only responds once the SessionURL, received in the response for session API, is clicked.
+      operationId: checkStatus
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique session ID for the purchase
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  details:
+                    type: object
+                example:
+                  status: "success"
+                  details: {}
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                example:
+                  error: "Invalid API Key"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

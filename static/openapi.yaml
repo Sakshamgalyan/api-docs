@@ -1,0 +1,67 @@
+openapi: 3.0.3
+info:
+  title: Create Customer API
+  version: 1.0.0
+  description: Create a customer record in the system.
+
+paths:
+  /api/v1/customer:
+    post:
+      summary: Create a customer
+      tags:
+        - Customers
+      parameters:
+        - in: header
+          name: BrandId
+          required: true
+          schema:
+            type: string
+          example: brand_id_value
+        - in: header
+          name: Authorization
+          required: true
+          schema:
+            type: string
+          example: Bearer your_token_here
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                merchantCustomerId:
+                  type: string
+                fullName:
+                  type: string
+                emailId:
+                  type: string
+                dateOfBirth:
+                  type: string
+                  format: date
+                phoneNo:
+                  type: string
+                city:
+                  type: string
+                stateCode:
+                  type: string
+                zipCode:
+                  type: string
+                address:
+                  type: string
+                country:
+                  type: string
+                custRegDate:
+                  type: string
+                  format: date
+                successTxn:
+                  type: string
+              required:
+                - merchantCustomerId
+                - fullName
+                - emailId
+      responses:
+        '200':
+          description: Customer created successfully
+        '400':
+          description: Bad Request
